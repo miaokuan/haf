@@ -50,4 +50,10 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('abCdE', $request->getAction());
     }
 
+    public function testGetIp()
+    {
+        $request = Request::singleton();
+        $request->setServer('REMOTE_ADDR', '127.0.0.1');
+        $this->assertEquals('127.0.0.1', $request->getIp());
+    }
 }
