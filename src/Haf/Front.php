@@ -70,12 +70,13 @@ class Front
 
     public function setNamespace($namespace)
     {
-        $arr = explode('\\', strtolower(trim($namespace, '\\')));
-        foreach ($arr as $key => $val) {
-            $arr[$key] = ucfirst($val);
-        }
+        // $arr = explode('\\', trim($namespace, '\\'));
+        // foreach ($arr as $key => $val) {
+        //     $arr[$key] = ucfirst($val);
+        // }
+        // $this->namespace = implode('\\', $arr) . '\\';
 
-        $this->namespace = implode('\\', $arr) . '\\';
+        $this->namespace = $namespace;
         return $this;
     }
 
