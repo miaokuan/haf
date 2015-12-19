@@ -2,13 +2,13 @@
     "name": "miaokuan/haf",
     "description": "a high available framework for php",
     "keywords": ["haf", "php", "framework"],
-    "homepage": "http://github.com/miaokuan/haf",
+    "homepage": "https://github.com/miaokuan/haf",
     "type": "library",
     "license": "MIT",
     "authors": [{
         "name": "miaokuan",
         "email": "eyou80@gmail.com",
-        "homepage":"http://github.com/miaokuan/"
+        "homepage":"https://github.com/miaokuan/"
     }],
     "require": {
         "php": ">=5.3.0"
