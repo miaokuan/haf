@@ -1,6 +1,6 @@
 {
     "name": "miaokuan/haf",
-    "description": "High available framework for PHP 5.3",
+    "description": "a high available framework for php",
     "keywords": ["haf", "php", "framework"],
     "homepage": "http://github.com/miaokuan/haf",
     "type": "library",
