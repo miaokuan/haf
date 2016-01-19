@@ -14,6 +14,8 @@ class Request
 
     protected $action;
 
+    protected $dispatched = false;
+
     protected $params = array();
 
     protected $server = array();
@@ -24,7 +26,7 @@ class Request
     public static function singleton()
     {
         if (null === self::$instance) {
-            self::$instance = new self();
+            self::$instance = new static();
         }
         return self::$instance;
     }
@@ -46,7 +48,7 @@ class Request
             $arr[$key] = ucfirst($val);
         }
 
-        return implode('_', $arr);
+        return implode('\\', $arr);
     }
 
     /**
@@ -113,6 +115,24 @@ class Request
     {
         $this->action = $this->formatAction($name);
         return $this;
+    }
+
+    /**
+     * @param $dispatched
+     * @return $this
+     */
+    public function setDispatched($dispatched)
+    {
+        $this->dispatched = $dispatched ? true : false;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getDispatched()
+    {
+        return $this->dispatched;
     }
 
     /**

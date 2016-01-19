@@ -12,8 +12,6 @@ class Front
 
     protected static $instance = null;
 
-    protected $dispatched = false;
-
     protected $namespace = 'Controller\\';
 
     /**
@@ -22,7 +20,7 @@ class Front
     public static function singleton()
     {
         if (null === self::$instance) {
-            self::$instance = new self();
+            self::$instance = new static();
         }
         return self::$instance;
     }
@@ -45,8 +43,8 @@ class Front
             $this->request = $request;
         }
 
-        while ($this->getDispatched() === false) {
-            $this->setDispatched(true);
+        while ($this->request->getDispatched() === false) {
+            $this->request->setDispatched(true);
             $controller = $this->getController();
             try {
                 $obj = new $controller($this->request);
@@ -70,12 +68,6 @@ class Front
 
     public function setNamespace($namespace)
     {
-        // $arr = explode('\\', trim($namespace, '\\'));
-        // foreach ($arr as $key => $val) {
-        //     $arr[$key] = ucfirst($val);
-        // }
-        // $this->namespace = implode('\\', $arr) . '\\';
-
         $this->namespace = $namespace;
         return $this;
     }
@@ -86,7 +78,6 @@ class Front
     public function getController()
     {
         $controller = $this->request->getController();
-        // return $this->namespace . $controller . 'Controller';
         return $this->namespace . $controller;
     }
 
@@ -96,26 +87,7 @@ class Front
     public function getAction()
     {
         $action = $this->request->getAction();
-        // return $action . 'Action';
         return $action;
-    }
-
-    /**
-     * @param $dispatched
-     * @return $this
-     */
-    public function setDispatched($dispatched)
-    {
-        $this->dispatched = $dispatched ? true : false;
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getDispatched()
-    {
-        return $this->dispatched;
     }
 
 }
